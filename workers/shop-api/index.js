@@ -4,17 +4,29 @@
  * Secret key stored as Worker secret (STRIPE_SECRET_KEY).
  */
 
-const CORS_HEADERS = {
-  'Access-Control-Allow-Origin': 'https://snow-country-auto.pages.dev',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type',
-};
+function corsHeaders(request) {
+  const origin = (request && request.headers.get('Origin')) || '';
+  const allowed = origin.endsWith('.snow-country-auto.pages.dev') ||
+                  origin === 'https://snow-country-auto.pages.dev' ||
+                  origin.startsWith('http://localhost');
+  return {
+    'Access-Control-Allow-Origin': allowed ? origin : '*',
+    'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+  };
+}
+
+function jsonResponse(request, data, status = 200) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: { ...corsHeaders(request), 'Content-Type': 'application/json' }
+  });
+}
 
 export default {
   async fetch(request, env) {
-    // Handle CORS preflight
     if (request.method === 'OPTIONS') {
-      return new Response(null, { status: 204, headers: CORS_HEADERS });
+      return new Response(null, { status: 204, headers: corsHeaders(request) });
     }
 
     const url = new URL(request.url);
@@ -24,9 +36,7 @@ export default {
     }
 
     if (url.pathname === '/health') {
-      return new Response(JSON.stringify({ ok: true, mode: 'test' }), {
-        headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' }
-      });
+      return jsonResponse(request, { ok: true, mode: 'test' });
     }
 
     return new Response('Not found', { status: 404 });
@@ -38,29 +48,14 @@ async function handleCheckout(request, env) {
     const { items, customer_email } = await request.json();
 
     if (!items || !items.length) {
-      return jsonResponse({ error: 'Cart is empty' }, 400);
+      return jsonResponse(request, { error: 'Cart is empty' }, 400);
     }
 
-    // Build Stripe line items from cart
-    const line_items = items.map(item => ({
-      price_data: {
-        currency: 'aud',
-        product_data: {
-          name: item.name,
-          description: item.brand ? `${item.brand} — ${item.sku || ''}` : undefined,
-          images: item.image ? [`https://snow-country-auto.pages.dev/${item.image}`] : undefined,
-        },
-        unit_amount: Math.round(item.price * 100), // Stripe uses cents
-      },
-      quantity: item.qty,
-    }));
-
-    // Create Stripe Checkout Session
+    // Create Stripe Checkout Session via form-encoded API
     const params = new URLSearchParams();
     params.append('mode', 'payment');
     params.append('success_url', `${env.SUCCESS_URL}?session_id={CHECKOUT_SESSION_ID}`);
     params.append('cancel_url', env.CANCEL_URL);
-    params.append('currency', 'aud');
     params.append('payment_method_types[0]', 'card');
 
     if (customer_email) {
@@ -88,17 +83,16 @@ async function handleCheckout(request, env) {
     params.append('shipping_options[1][shipping_rate_data][delivery_estimate][maximum][value]', '7');
 
     // Add line items
-    line_items.forEach((item, i) => {
+    items.forEach((item, i) => {
       params.append(`line_items[${i}][price_data][currency]`, 'aud');
-      params.append(`line_items[${i}][price_data][product_data][name]`, item.price_data.product_data.name);
-      if (item.price_data.product_data.description) {
-        params.append(`line_items[${i}][price_data][product_data][description]`, item.price_data.product_data.description);
+      params.append(`line_items[${i}][price_data][product_data][name]`, item.name);
+      if (item.brand) {
+        params.append(`line_items[${i}][price_data][product_data][description]`, `${item.brand}${item.sku ? ' — ' + item.sku : ''}`);
       }
-      params.append(`line_items[${i}][price_data][unit_amount]`, item.price_data.unit_amount.toString());
-      params.append(`line_items[${i}][quantity]`, item.quantity.toString());
+      params.append(`line_items[${i}][price_data][unit_amount]`, Math.round(item.price * 100).toString());
+      params.append(`line_items[${i}][quantity]`, item.qty.toString());
     });
 
-    // Stripe API call
     const stripeRes = await fetch('https://api.stripe.com/v1/checkout/sessions', {
       method: 'POST',
       headers: {
@@ -111,21 +105,14 @@ async function handleCheckout(request, env) {
     const session = await stripeRes.json();
 
     if (session.error) {
-      console.error('Stripe error:', session.error);
-      return jsonResponse({ error: session.error.message }, 400);
+      console.error('Stripe error:', JSON.stringify(session.error));
+      return jsonResponse(request, { error: session.error.message }, 400);
     }
 
-    return jsonResponse({ url: session.url, session_id: session.id });
+    return jsonResponse(request, { url: session.url, session_id: session.id });
 
   } catch (err) {
-    console.error('Checkout error:', err);
-    return jsonResponse({ error: 'Internal server error' }, 500);
+    console.error('Checkout error:', err.message || err);
+    return jsonResponse(request, { error: 'Internal server error: ' + (err.message || '') }, 500);
   }
-}
-
-function jsonResponse(data, status = 200) {
-  return new Response(JSON.stringify(data), {
-    status,
-    headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' }
-  });
 }
