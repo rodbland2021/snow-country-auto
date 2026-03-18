@@ -69,12 +69,15 @@
       );
     }
 
+    const countEl = document.getElementById('productCount');
     if (filtered.length === 0) {
       grid.innerHTML = '';
       empty.style.display = 'block';
+      countEl.textContent = '';
       return;
     }
     empty.style.display = 'none';
+    countEl.textContent = 'Showing ' + filtered.length + ' of ' + products.length + ' products';
 
     grid.innerHTML = filtered.map(p => {
       const stockBadge = p.stock > 10
