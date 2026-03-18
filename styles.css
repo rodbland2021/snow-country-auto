@@ -19,8 +19,10 @@ a { text-decoration: none; transition: color 0.2s; }
   --bg-alt: #16213e;
   --text: #e8e8e8;
   --text-muted: #b8b8c8;
-  --primary: #4a8fe6;
-  --primary-hover: #5da0f0;
+  --primary: #6ba3eb;
+  --primary-hover: #7db2f0;
+  --primary-btn: #2563b8;
+  --primary-btn-hover: #1d5aab;
   --accent: #e67e22;
   --card-bg: #1e2a40;
   --card-border: #2a3a55;
@@ -43,6 +45,8 @@ a { text-decoration: none; transition: color 0.2s; }
   --text-muted: #636e72;
   --primary: #2d6abf;
   --primary-hover: #1e5aaf;
+  --primary-btn: #2563b8;
+  --primary-btn-hover: #1d5aab;
   --accent: #2d6abf;
   --card-bg: #ffffff;
   --card-border: #e0e4e8;
@@ -65,6 +69,8 @@ a { text-decoration: none; transition: color 0.2s; }
   --text-muted: #999999;
   --primary: #ff6b00;
   --primary-hover: #ff8533;
+  --primary-btn: #d45a00;
+  --primary-btn-hover: #b84e00;
   --accent: #ff6b00;
   --card-bg: #1a1a1a;
   --card-border: #333333;
@@ -98,7 +104,7 @@ body {
   transition: all 0.2s;
 }
 .theme-btn:hover { border-color: #888; color: #fff; }
-.theme-btn.active { background: #1d4f8a; border-color: #1d4f8a; color: #fff; }
+.theme-btn.active { background: var(--primary-btn, #1d4f8a); border-color: var(--primary-btn, #1d4f8a); color: #fff; }
 
 /* --- Header --- */
 .site-header {
@@ -128,8 +134,8 @@ body {
   font-weight: 600; font-size: 15px; cursor: pointer; border: 2px solid transparent;
   transition: all 0.2s;
 }
-.btn-primary { background: #2563b8; color: #fff; border-color: #2563b8; }
-.btn-primary:hover { background: #1d5aab; border-color: #1d5aab; }
+.btn-primary { background: var(--primary-btn, #2563b8); color: #fff; border-color: var(--primary-btn, #2563b8); }
+.btn-primary:hover { background: var(--primary-btn-hover, #1d5aab); border-color: var(--primary-btn-hover, #1d5aab); }
 .btn-outline { background: rgba(255,255,255,0.15); color: #fff; border-color: rgba(255,255,255,0.5); backdrop-filter: blur(4px); }
 .btn-outline:hover { background: rgba(255,255,255,0.25); border-color: #fff; color: #fff; }
 .btn-lg { padding: 14px 32px; font-size: 16px; }
