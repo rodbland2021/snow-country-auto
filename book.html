@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a Service — Snow Country Automotive</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="book.css">
+</head>
+<body data-theme="rugged">
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="logo">
+        <img src="assets/logo-white.png" alt="Snow Country Automotive" class="logo-img">
+      </a>
+      <nav class="main-nav">
+        <a href="/">Home</a>
+        <a href="/#services">Services</a>
+        <a href="/#4wd">4WD Centre</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+      <div class="header-cta">
+        <a href="tel:0264562170" class="phone-link">02 6456 2170</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Booking Form -->
+  <section class="book-section">
+    <div class="container">
+      <div class="book-layout">
+        <div class="book-info">
+          <h1 class="book-title">Book a Service</h1>
+          <p class="book-desc">Fill out the form and we'll get back to you within 1 business day to confirm your booking.</p>
+
+          <div class="book-perks">
+            <div class="perk">
+              <span class="perk-icon">&#128664;</span>
+              <div>
+                <strong>Free Courtesy Cars</strong>
+                <p>We'll keep you moving while your car's in the workshop.</p>
+              </div>
+            </div>
+            <div class="perk">
+              <span class="perk-icon">&#128666;</span>
+              <div>
+                <strong>Free Pickup & Drop-off</strong>
+                <p>Can't get to us? We'll come to you.</p>
+              </div>
+            </div>
+            <div class="perk">
+              <span class="perk-icon">&#9989;</span>
+              <div>
+                <strong>Warranty Safe</strong>
+                <p>Manufacturer-spec servicing that won't void your warranty.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="book-contact">
+            <p><strong>Prefer to call?</strong></p>
+            <a href="tel:0264562170" class="book-phone">02 6456 2170</a>
+            <p class="book-hours">Mon – Fri, 8am – 5pm</p>
+          </div>
+        </div>
+
+        <form class="book-form" id="bookingForm">
+          <!-- Progress -->
+          <div class="form-progress">
+            <div class="progress-step active" data-step="1">
+              <span class="step-num">1</span>
+              <span class="step-label">Service</span>
+            </div>
+            <div class="progress-line"></div>
+            <div class="progress-step" data-step="2">
+              <span class="step-num">2</span>
+              <span class="step-label">Vehicle</span>
+            </div>
+            <div class="progress-line"></div>
+            <div class="progress-step" data-step="3">
+              <span class="step-num">3</span>
+              <span class="step-label">Details</span>
+            </div>
+          </div>
+
+          <!-- Step 1: Service Type -->
+          <div class="form-step" data-step="1">
+            <h2>What do you need?</h2>
+            <div class="service-options">
+              <label class="service-option">
+                <input type="radio" name="service" value="general" required>
+                <span class="option-card">
+                  <strong>General Service</strong>
+                  <small>Regular maintenance & oil change</small>
+                </span>
+              </label>
+              <label class="service-option">
+                <input type="radio" name="service" value="logbook">
+                <span class="option-card">
+                  <strong>Logbook Service</strong>
+                  <small>Manufacturer-spec, warranty safe</small>
+                </span>
+              </label>
+              <label class="service-option">
+                <input type="radio" name="service" value="4wd">
+                <span class="option-card">
+                  <strong>4WD Upgrade / Accessories</strong>
+                  <small>Lift kits, bull bars, exhausts, etc.</small>
+                </span>
+              </label>
+              <label class="service-option">
+                <input type="radio" name="service" value="tyres">
+                <span class="option-card">
+                  <strong>Tyres & Alignment</strong>
+                  <small>New tyres, rotation, wheel alignment</small>
+                </span>
+              </label>
+              <label class="service-option">
+                <input type="radio" name="service" value="diagnostics">
+                <span class="option-card">
+                  <strong>Diagnostics</strong>
+                  <small>Warning light, performance issue</small>
+                </span>
+              </label>
+              <label class="service-option">
+                <input type="radio" name="service" value="aircon">
+                <span class="option-card">
+                  <strong>Air Conditioning</strong>
+                  <small>Regas, repair, not blowing cold</small>
+                </span>
+              </label>
+              <label class="service-option">
+                <input type="radio" name="service" value="electrical">
+                <span class="option-card">
+                  <strong>Auto Electrical</strong>
+                  <small>Lights, batteries, cameras, wiring</small>
+                </span>
+              </label>
+              <label class="service-option">
+                <input type="radio" name="service" value="inspection">
+                <span class="option-card">
+                  <strong>Inspection (Pink/Blue Slip)</strong>
+                  <small>Registration inspection</small>
+                </span>
+              </label>
+              <label class="service-option">
+                <input type="radio" name="service" value="other">
+                <span class="option-card">
+                  <strong>Other</strong>
+                  <small>Something else — tell us below</small>
+                </span>
+              </label>
+            </div>
+            <div class="form-nav">
+              <div></div>
+              <button type="button" class="btn btn-primary btn-next" onclick="nextStep()">Next: Vehicle Details</button>
+            </div>
+          </div>
+
+          <!-- Step 2: Vehicle -->
+          <div class="form-step" data-step="2" style="display:none">
+            <h2>Your Vehicle</h2>
+            <div class="form-grid">
+              <div class="form-field">
+                <label>Make</label>
+                <select name="make" required>
+                  <option value="">Select make...</option>
+                  <option>Toyota</option>
+                  <option>Nissan</option>
+                  <option>Ford</option>
+                  <option>Mazda</option>
+                  <option>Mitsubishi</option>
+                  <option>Holden</option>
+                  <option>Subaru</option>
+                  <option>Hyundai</option>
+                  <option>Kia</option>
+                  <option>Isuzu</option>
+                  <option>Jeep</option>
+                  <option>Land Rover</option>
+                  <option>Suzuki</option>
+                  <option>Volkswagen</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label>Model</label>
+                <input type="text" name="model" placeholder="e.g. LandCruiser, Ranger, Hilux" required>
+              </div>
+              <div class="form-field">
+                <label>Year</label>
+                <input type="number" name="year" placeholder="e.g. 2022" min="1980" max="2027">
+              </div>
+              <div class="form-field">
+                <label>Registration</label>
+                <input type="text" name="rego" placeholder="e.g. ABC 123" style="text-transform: uppercase">
+              </div>
+            </div>
+            <div class="form-field">
+              <label>Odometer (approx km)</label>
+              <input type="text" name="odometer" placeholder="e.g. 85,000">
+            </div>
+            <div class="form-field">
+              <label>Tell us more about what you need</label>
+              <textarea name="notes" rows="3" placeholder="Any specific issues, symptoms, or work you'd like done..."></textarea>
+            </div>
+            <div class="form-nav">
+              <button type="button" class="btn btn-outline btn-back" onclick="prevStep()">Back</button>
+              <button type="button" class="btn btn-primary btn-next" onclick="nextStep()">Next: Your Details</button>
+            </div>
+          </div>
+
+          <!-- Step 3: Contact -->
+          <div class="form-step" data-step="3" style="display:none">
+            <h2>Your Details</h2>
+            <div class="form-grid">
+              <div class="form-field">
+                <label>Full Name</label>
+                <input type="text" name="name" required placeholder="Your name">
+              </div>
+              <div class="form-field">
+                <label>Phone</label>
+                <input type="tel" name="phone" required placeholder="Mobile or landline">
+              </div>
+            </div>
+            <div class="form-field">
+              <label>Email</label>
+              <input type="email" name="email" required placeholder="your@email.com">
+            </div>
+            <div class="form-grid">
+              <div class="form-field">
+                <label>Preferred Date</label>
+                <input type="date" name="date">
+              </div>
+              <div class="form-field">
+                <label>Preferred Time</label>
+                <select name="time">
+                  <option value="">No preference</option>
+                  <option>8:00 AM</option>
+                  <option>9:00 AM</option>
+                  <option>10:00 AM</option>
+                  <option>11:00 AM</option>
+                  <option>12:00 PM</option>
+                  <option>1:00 PM</option>
+                  <option>2:00 PM</option>
+                  <option>3:00 PM</option>
+                  <option>4:00 PM</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-field">
+              <label class="checkbox-label">
+                <input type="checkbox" name="courtesy_car">
+                I'd like a courtesy car while my vehicle is being serviced
+              </label>
+            </div>
+            <div class="form-field">
+              <label class="checkbox-label">
+                <input type="checkbox" name="pickup">
+                I'd like pickup/drop-off service
+              </label>
+            </div>
+            <div class="form-nav">
+              <button type="button" class="btn btn-outline btn-back" onclick="prevStep()">Back</button>
+              <button type="submit" class="btn btn-primary btn-lg">Submit Booking Request</button>
+            </div>
+          </div>
+
+          <!-- Success -->
+          <div class="form-success" id="formSuccess" style="display:none">
+            <div class="success-icon">&#9989;</div>
+            <h2>Booking Request Sent!</h2>
+            <p>Thanks! We'll get back to you within 1 business day to confirm your appointment.</p>
+            <p class="success-note">If it's urgent, give us a call on <a href="tel:0264562170">02 6456 2170</a></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-bottom">
+      <div class="container">&copy; 2026 Snow Country Automotive Pty Ltd. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    let currentStep = 1;
+
+    function nextStep() {
+      const current = document.querySelector(`.form-step[data-step="${currentStep}"]`);
+      // Basic validation on step 1
+      if (currentStep === 1) {
+        const selected = document.querySelector('input[name="service"]:checked');
+        if (!selected) {
+          current.querySelector('.service-options').style.outline = '2px solid #e74c3c';
+          setTimeout(() => current.querySelector('.service-options').style.outline = '', 2000);
+          return;
+        }
+      }
+      current.style.display = 'none';
+      currentStep++;
+      document.querySelector(`.form-step[data-step="${currentStep}"]`).style.display = 'block';
+      updateProgress();
+    }
+
+    function prevStep() {
+      document.querySelector(`.form-step[data-step="${currentStep}"]`).style.display = 'none';
+      currentStep--;
+      document.querySelector(`.form-step[data-step="${currentStep}"]`).style.display = 'block';
+      updateProgress();
+    }
+
+    function updateProgress() {
+      document.querySelectorAll('.progress-step').forEach(s => {
+        const step = parseInt(s.dataset.step);
+        s.classList.toggle('active', step <= currentStep);
+        s.classList.toggle('completed', step < currentStep);
+      });
+      document.querySelectorAll('.progress-line').forEach((line, i) => {
+        line.classList.toggle('active', i + 1 < currentStep);
+      });
+    }
+
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // In production this would POST to an API
+      document.querySelectorAll('.form-step').forEach(s => s.style.display = 'none');
+      document.querySelector('.form-progress').style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    });
+  </script>
+</body>
+</html>
