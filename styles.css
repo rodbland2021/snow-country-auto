@@ -144,7 +144,7 @@ body {
 /* --- Hero --- */
 .hero {
   position: relative; min-height: 48vh; display: flex; align-items: center;
-  background: url('https://images.unsplash.com/photo-1519944518895-f5544b568fd5?w=1600&q=80') center/cover;
+  background: url('https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1600&q=80') center/cover;
   margin-top: 84px;
 }
 .hero-overlay {
