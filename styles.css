@@ -256,6 +256,23 @@ body {
 .contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--text-muted); }
 .contact-form select { cursor: pointer; }
 
+/* Contact CTA cards (replace inline form) */
+.contact-cta { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.contact-cta-card {
+  background: var(--card-bg); border: 1px solid var(--card-border);
+  border-radius: 12px; padding: 28px; text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+}
+.contact-cta-card h3 { font-size: 1.1rem; font-weight: 700; }
+.contact-cta-card p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin-bottom: 8px; }
+.btn-outline {
+  background: transparent; border: 2px solid var(--primary);
+  color: var(--primary); padding: 12px 28px; border-radius: 8px;
+  font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block;
+  transition: all 0.2s;
+}
+.btn-outline:hover { background: var(--primary); color: #fff; }
+
 /* --- Footer --- */
 .site-footer { background: var(--footer-bg); padding: 60px 0 0; }
 .footer-inner {
@@ -292,6 +309,7 @@ body {
   .hero { min-height: 40vh; margin-top: 84px; }
   .hero-title { font-size: 2.2rem; }
   .contact-grid { grid-template-columns: 1fr; }
+  .contact-cta { grid-template-columns: 1fr; }
   .footer-inner { grid-template-columns: 1fr 1fr; }
   .services-grid { grid-template-columns: 1fr; }
   .theme-switcher { bottom: 12px; right: 12px; font-size: 11px; padding: 4px 8px; opacity: 0.7; }
