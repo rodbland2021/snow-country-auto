@@ -91,7 +91,7 @@ body {
   background: rgba(0,0,0,0.7); padding: 6px 12px; border-radius: 6px;
   backdrop-filter: blur(10px); font-size: 12px;
 }
-.theme-label { color: #ccc; font-size: 13px; font-weight: 500; }
+.theme-label { color: #fff; font-size: 13px; font-weight: 500; }
 .theme-btn {
   background: transparent; border: 1px solid #555; color: #ccc;
   padding: 4px 12px; border-radius: 4px; cursor: pointer; font-size: 13px;
