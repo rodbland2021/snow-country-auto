@@ -108,7 +108,7 @@
   transition: all 0.3s;
 }
 .progress-step.active .step-num {
-  background: var(--primary);
+  background: #2563b8;
   color: #fff;
 }
 .progress-step.completed .step-num {
