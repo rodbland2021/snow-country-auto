@@ -90,10 +90,8 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  opacity: 0.4;
-  transition: opacity 0.3s;
+  transition: all 0.3s;
 }
-.progress-step.active { opacity: 1; }
 .step-num {
   width: 32px;
   height: 32px;
@@ -118,7 +116,7 @@
 .step-label {
   font-size: 13px;
   font-weight: 600;
-  color: #d0d4de !important;
+  color: #8890a0;
 }
 .progress-step.active .step-label { color: var(--text) !important; }
 .progress-line {
