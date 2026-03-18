@@ -18,14 +18,14 @@ a { text-decoration: none; transition: color 0.2s; }
   --bg: #1a1a2e;
   --bg-alt: #16213e;
   --text: #e8e8e8;
-  --text-muted: #a0a0b0;
+  --text-muted: #b8b8c8;
   --primary: #2d6abf;
   --primary-hover: #3b7dd8;
   --accent: #e67e22;
   --card-bg: #1e2a40;
   --card-border: #2a3a55;
   --header-bg: rgba(16, 16, 30, 0.95);
-  --hero-overlay: rgba(10, 10, 25, 0.7);
+  --hero-overlay: rgba(10, 10, 25, 0.75);
   --footer-bg: #0f0f1e;
   --heading-font: 'Bebas Neue', sans-serif;
   --heading-spacing: 0.05em;
@@ -154,7 +154,7 @@ body {
 .hero-title {
   font-family: var(--heading-font); font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 800; letter-spacing: var(--heading-spacing);
-  line-height: 1.1; margin-bottom: 14px; color: #fff;
+  line-height: 1.1; margin-bottom: 14px; color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,0.5);
 }
 .hero-subtitle {
   font-size: 1.05rem; color: rgba(255,255,255,0.85); margin-bottom: 24px;
@@ -294,5 +294,5 @@ body {
   .contact-grid { grid-template-columns: 1fr; }
   .footer-inner { grid-template-columns: 1fr 1fr; }
   .services-grid { grid-template-columns: 1fr; }
-  .theme-switcher { bottom: 12px; right: 12px; }
+  .theme-switcher { bottom: 12px; right: 12px; font-size: 11px; padding: 4px 8px; opacity: 0.7; }
 }

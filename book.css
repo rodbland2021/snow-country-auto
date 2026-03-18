@@ -313,11 +313,17 @@
 
 /* Mobile */
 @media (max-width: 768px) {
-  .book-layout { grid-template-columns: 1fr; gap: 32px; }
-  .book-section { padding-top: 100px; }
+  .book-layout { grid-template-columns: 1fr; gap: 24px; }
+  .book-section { padding-top: 100px; padding-left: 16px; padding-right: 16px; }
+  .book-form { order: -1; }
   .service-options { grid-template-columns: 1fr 1fr; }
   .form-grid { grid-template-columns: 1fr; }
   .book-title { font-size: 2rem; }
+  .book-form { padding: 20px; }
+  .rego-input-row { flex-wrap: wrap; }
+  .rego-btn { width: 100%; }
+  .cal-header, .cal-row { grid-template-columns: 45px repeat(5, 1fr); }
+  .cal-slot { font-size: 0.7rem; padding: 6px 2px; }
 }
 @media (max-width: 480px) {
   .service-options { grid-template-columns: 1fr; }
