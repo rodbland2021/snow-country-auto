@@ -37,7 +37,12 @@
       <div class="book-layout">
         <div class="book-info">
           <h1 class="book-title">Book a Service</h1>
-          <p class="book-desc">Fill out the form and we'll get back to you within 1 business day to confirm your booking.</p>
+          <p class="book-desc">Book your initial 1-hour vehicle assessment. We'll diagnose, quote, and plan the work your vehicle needs.</p>
+
+          <div class="assessment-banner">
+            <strong>How it works</strong>
+            <p>Every booking starts with a <strong>1-hour assessment</strong> — we inspect your vehicle, diagnose any issues, and provide a detailed quote. The assessment cost is <strong>fully deductible from your final repair or service bill</strong>.</p>
+          </div>
 
           <div class="book-perks">
             <div class="perk">
@@ -166,44 +171,51 @@
           <!-- Step 2: Vehicle -->
           <div class="form-step" data-step="2" style="display:none">
             <h2>Your Vehicle</h2>
+
+            <!-- Rego Lookup -->
+            <div class="rego-lookup">
+              <div class="form-field">
+                <label>Registration Number</label>
+                <div class="rego-input-row">
+                  <input type="text" name="rego" id="regoInput" placeholder="e.g. ABC 123" style="text-transform: uppercase" class="rego-field">
+                  <span class="rego-state">NSW</span>
+                  <button type="button" class="btn btn-primary rego-btn" onclick="lookupRego()">Look Up</button>
+                </div>
+                <small class="rego-hint">Enter your rego and we'll try to fill in the details automatically</small>
+              </div>
+              <div id="regoResult" class="rego-result" style="display:none">
+                <div class="rego-found">
+                  <span class="rego-found-icon">&#9989;</span>
+                  <span id="regoResultText"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="or-divider"><span>or enter manually</span></div>
+
             <div class="form-grid">
               <div class="form-field">
                 <label>Make</label>
-                <select name="make" required>
+                <select name="make" id="makeSelect" onchange="loadModels()" required>
                   <option value="">Select make...</option>
-                  <option>Toyota</option>
-                  <option>Nissan</option>
-                  <option>Ford</option>
-                  <option>Mazda</option>
-                  <option>Mitsubishi</option>
-                  <option>Holden</option>
-                  <option>Subaru</option>
-                  <option>Hyundai</option>
-                  <option>Kia</option>
-                  <option>Isuzu</option>
-                  <option>Jeep</option>
-                  <option>Land Rover</option>
-                  <option>Suzuki</option>
-                  <option>Volkswagen</option>
-                  <option>Other</option>
                 </select>
               </div>
               <div class="form-field">
                 <label>Model</label>
-                <input type="text" name="model" placeholder="e.g. LandCruiser, Ranger, Hilux" required>
+                <select name="model" id="modelSelect" required>
+                  <option value="">Select make first...</option>
+                </select>
               </div>
               <div class="form-field">
                 <label>Year</label>
-                <input type="number" name="year" placeholder="e.g. 2022" min="1980" max="2027">
+                <select name="year" id="yearSelect">
+                  <option value="">Year...</option>
+                </select>
               </div>
               <div class="form-field">
-                <label>Registration</label>
-                <input type="text" name="rego" placeholder="e.g. ABC 123" style="text-transform: uppercase">
+                <label>Odometer (approx km)</label>
+                <input type="text" name="odometer" placeholder="e.g. 85,000">
               </div>
-            </div>
-            <div class="form-field">
-              <label>Odometer (approx km)</label>
-              <input type="text" name="odometer" placeholder="e.g. 85,000">
             </div>
             <div class="form-field">
               <label>Tell us more about what you need</label>
@@ -211,13 +223,32 @@
             </div>
             <div class="form-nav">
               <button type="button" class="btn btn-outline btn-back" onclick="prevStep()">Back</button>
-              <button type="button" class="btn btn-primary btn-next" onclick="nextStep()">Next: Your Details</button>
+              <button type="button" class="btn btn-primary btn-next" onclick="nextStep()">Next: Choose a Time</button>
             </div>
           </div>
 
-          <!-- Step 3: Contact -->
+          <!-- Step 3: Time & Contact -->
           <div class="form-step" data-step="3" style="display:none">
-            <h2>Your Details</h2>
+            <h2>Pick a Time</h2>
+            <p class="step-desc">Select an available 1-hour assessment slot. Green = available, grey = booked.</p>
+
+            <!-- Calendar Week View -->
+            <div class="calendar-nav">
+              <button type="button" class="cal-nav-btn" onclick="calPrev()">&larr;</button>
+              <span id="calWeekLabel" class="cal-week-label"></span>
+              <button type="button" class="cal-nav-btn" onclick="calNext()">&rarr;</button>
+            </div>
+            <div class="calendar-grid" id="calendarGrid">
+              <!-- Generated by JS -->
+            </div>
+            <input type="hidden" name="booking_datetime" id="bookingDatetime">
+
+            <div class="assessment-note">
+              <strong>1-Hour Assessment — Cost deductible from final bill</strong>
+              <p>Your selected time is for a 1-hour diagnostic assessment. The assessment fee is fully deducted from your repair or service invoice.</p>
+            </div>
+
+            <h3 class="contact-heading">Your Details</h3>
             <div class="form-grid">
               <div class="form-field">
                 <label>Full Name</label>
@@ -231,27 +262,6 @@
             <div class="form-field">
               <label>Email</label>
               <input type="email" name="email" required placeholder="your@email.com">
-            </div>
-            <div class="form-grid">
-              <div class="form-field">
-                <label>Preferred Date</label>
-                <input type="date" name="date">
-              </div>
-              <div class="form-field">
-                <label>Preferred Time</label>
-                <select name="time">
-                  <option value="">No preference</option>
-                  <option>8:00 AM</option>
-                  <option>9:00 AM</option>
-                  <option>10:00 AM</option>
-                  <option>11:00 AM</option>
-                  <option>12:00 PM</option>
-                  <option>1:00 PM</option>
-                  <option>2:00 PM</option>
-                  <option>3:00 PM</option>
-                  <option>4:00 PM</option>
-                </select>
-              </div>
             </div>
             <div class="form-field">
               <label class="checkbox-label">
@@ -267,7 +277,7 @@
             </div>
             <div class="form-nav">
               <button type="button" class="btn btn-outline btn-back" onclick="prevStep()">Back</button>
-              <button type="submit" class="btn btn-primary btn-lg">Submit Booking Request</button>
+              <button type="submit" class="btn btn-primary btn-lg">Confirm Booking</button>
             </div>
           </div>
 
@@ -293,9 +303,9 @@
   <script>
     let currentStep = 1;
 
+    // --- Step Navigation ---
     function nextStep() {
       const current = document.querySelector(`.form-step[data-step="${currentStep}"]`);
-      // Basic validation on step 1
       if (currentStep === 1) {
         const selected = document.querySelector('input[name="service"]:checked');
         if (!selected) {
@@ -308,6 +318,7 @@
       currentStep++;
       document.querySelector(`.form-step[data-step="${currentStep}"]`).style.display = 'block';
       updateProgress();
+      if (currentStep === 3) buildCalendar();
     }
 
     function prevStep() {
@@ -328,13 +339,169 @@
       });
     }
 
+    // --- Australian Makes & Models ---
+    const auMakes = {
+      'Toyota': ['HiLux','LandCruiser','LandCruiser Prado','Fortuner','RAV4','Corolla','Camry','Kluger','86','Yaris','C-HR','Supra','HiAce'],
+      'Ford': ['Ranger','Everest','Mustang','Focus','Escape','Puma','Endura','Transit','Falcon','Territory'],
+      'Nissan': ['Navara','Patrol','X-Trail','Qashqai','Pathfinder','Juke','370Z','Leaf','Pulsar'],
+      'Mazda': ['BT-50','CX-5','CX-3','CX-9','CX-30','Mazda3','Mazda6','MX-5','CX-8','CX-60'],
+      'Mitsubishi': ['Triton','Pajero','Pajero Sport','Outlander','ASX','Eclipse Cross','Delica'],
+      'Holden': ['Colorado','Trailblazer','Commodore','Captiva','Astra','Trax','Equinox','Acadia'],
+      'Subaru': ['Outback','Forester','XV','WRX','Impreza','BRZ','Liberty','Levorg'],
+      'Hyundai': ['Tucson','Santa Fe','i30','Kona','Venue','iLoad','Staria','Ioniq 5','Palisade'],
+      'Kia': ['Sportage','Sorento','Cerato','Seltos','Carnival','Stonic','EV6','Niro','Stinger'],
+      'Isuzu': ['D-MAX','MU-X'],
+      'Jeep': ['Wrangler','Grand Cherokee','Cherokee','Gladiator','Compass','Renegade'],
+      'Land Rover': ['Defender','Discovery','Range Rover','Range Rover Sport','Freelander','Evoque'],
+      'Suzuki': ['Jimny','Vitara','Swift','S-Cross','Ignis','Baleno'],
+      'Volkswagen': ['Amarok','Tiguan','Golf','T-Cross','T-Roc','Polo','Touareg','Transporter'],
+      'Mercedes-Benz': ['X-Class','G-Class','GLC','GLE','A-Class','C-Class','E-Class','Sprinter'],
+      'BMW': ['X1','X3','X5','3 Series','5 Series','1 Series','M3','M4'],
+      'GWM': ['Ute','Tank 300','Haval H6','Haval Jolion','Ora'],
+      'LDV': ['T60','D90','Deliver 9','eDeliver'],
+      'RAM': ['1500','2500','3500'],
+      'Other': []
+    };
+
+    function initMakes() {
+      const sel = document.getElementById('makeSelect');
+      Object.keys(auMakes).forEach(make => {
+        const opt = document.createElement('option');
+        opt.value = make; opt.textContent = make;
+        sel.appendChild(opt);
+      });
+      // Populate year dropdown (current year down to 1990)
+      const yearSel = document.getElementById('yearSelect');
+      const thisYear = new Date().getFullYear();
+      for (let y = thisYear + 1; y >= 1990; y--) {
+        const opt = document.createElement('option');
+        opt.value = y; opt.textContent = y;
+        yearSel.appendChild(opt);
+      }
+    }
+
+    function loadModels() {
+      const make = document.getElementById('makeSelect').value;
+      const sel = document.getElementById('modelSelect');
+      sel.innerHTML = '<option value="">Select model...</option>';
+      if (auMakes[make]) {
+        auMakes[make].forEach(model => {
+          const opt = document.createElement('option');
+          opt.value = model; opt.textContent = model;
+          sel.appendChild(opt);
+        });
+      }
+    }
+
+    // --- Rego Lookup (mock for demo) ---
+    function lookupRego() {
+      const rego = document.getElementById('regoInput').value.trim().toUpperCase();
+      if (!rego) return;
+      const result = document.getElementById('regoResult');
+      const text = document.getElementById('regoResultText');
+      // Mock lookup — in production this calls PlateToVIN or NEVDIS API
+      const mockVehicles = {
+        'ABC123': { make: 'Toyota', model: 'LandCruiser', year: 2019, colour: 'White' },
+        'XYZ789': { make: 'Ford', model: 'Ranger', year: 2021, colour: 'Grey' },
+        'DEF456': { make: 'Nissan', model: 'Patrol', year: 2020, colour: 'Black' },
+      };
+      const clean = rego.replace(/\s/g, '');
+      if (mockVehicles[clean]) {
+        const v = mockVehicles[clean];
+        text.textContent = `${v.year} ${v.make} ${v.model} (${v.colour})`;
+        result.style.display = 'block';
+        result.querySelector('.rego-found').className = 'rego-found success';
+        // Auto-fill make/model/year
+        document.getElementById('makeSelect').value = v.make;
+        loadModels();
+        setTimeout(() => { document.getElementById('modelSelect').value = v.model; }, 100);
+        document.getElementById('yearSelect').value = v.year;
+      } else {
+        text.textContent = `No record found for "${rego}" — please enter details manually`;
+        result.style.display = 'block';
+        result.querySelector('.rego-found').className = 'rego-found notfound';
+      }
+    }
+
+    // --- Calendar ---
+    let calWeekStart = getNextMonday();
+    const SLOTS = ['8:00','9:00','10:00','11:00','13:00','14:00','15:00','16:00'];
+    let selectedSlot = null;
+
+    function getNextMonday() {
+      const d = new Date();
+      const day = d.getDay();
+      const diff = day === 0 ? 1 : (day === 6 ? 2 : (day === 1 ? 0 : 8 - day));
+      d.setDate(d.getDate() + diff);
+      d.setHours(0,0,0,0);
+      return d;
+    }
+
+    function calPrev() {
+      calWeekStart = new Date(calWeekStart.getTime() - 7 * 86400000);
+      if (calWeekStart < new Date()) calWeekStart = getNextMonday();
+      buildCalendar();
+    }
+    function calNext() {
+      calWeekStart = new Date(calWeekStart.getTime() + 7 * 86400000);
+      buildCalendar();
+    }
+
+    function buildCalendar() {
+      const grid = document.getElementById('calendarGrid');
+      const label = document.getElementById('calWeekLabel');
+      const days = [];
+      for (let i = 0; i < 5; i++) {
+        const d = new Date(calWeekStart.getTime() + i * 86400000);
+        days.push(d);
+      }
+      const fmt = d => d.toLocaleDateString('en-AU', { weekday: 'short', day: 'numeric', month: 'short' });
+      label.textContent = `${fmt(days[0])} — ${fmt(days[4])}`;
+
+      // Generate random availability (mock)
+      let html = '<div class="cal-header"><div class="cal-time-col"></div>';
+      days.forEach(d => {
+        html += `<div class="cal-day-col">${d.toLocaleDateString('en-AU',{weekday:'short'})}<br><strong>${d.getDate()}</strong></div>`;
+      });
+      html += '</div>';
+
+      SLOTS.forEach(time => {
+        html += `<div class="cal-row"><div class="cal-time-col">${time}</div>`;
+        days.forEach(d => {
+          const dateStr = d.toISOString().split('T')[0];
+          const key = `${dateStr}T${time}`;
+          // Mock: ~65% chance available, past dates unavailable
+          const isPast = d < new Date();
+          const available = !isPast && (Math.random() > 0.35 || time === '8:00' || time === '13:00');
+          const sel = selectedSlot === key ? ' selected' : '';
+          if (available) {
+            html += `<div class="cal-slot available${sel}" onclick="selectSlot('${key}',this)">${time === '13:00' ? '1:00pm' : (parseInt(time) > 12 ? (parseInt(time)-12)+':00pm' : time+'am')}</div>`;
+          } else {
+            html += `<div class="cal-slot booked">&mdash;</div>`;
+          }
+        });
+        html += '</div>';
+      });
+      grid.innerHTML = html;
+    }
+
+    function selectSlot(key, el) {
+      document.querySelectorAll('.cal-slot.selected').forEach(s => s.classList.remove('selected'));
+      el.classList.add('selected');
+      selectedSlot = key;
+      document.getElementById('bookingDatetime').value = key;
+    }
+
+    // --- Form Submit ---
     document.getElementById('bookingForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      // In production this would POST to an API
       document.querySelectorAll('.form-step').forEach(s => s.style.display = 'none');
       document.querySelector('.form-progress').style.display = 'none';
       document.getElementById('formSuccess').style.display = 'block';
     });
+
+    // Init
+    initMakes();
   </script>
 </body>
 </html>
