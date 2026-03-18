@@ -110,7 +110,7 @@ body {
   display: flex; align-items: center; justify-content: space-between;
   height: 72px;
 }
-.logo-img { height: 44px; }
+.logo-img { height: 60px; width: auto; }
 .main-nav { display: flex; gap: 28px; }
 .main-nav a {
   color: var(--text-muted); font-weight: 500; font-size: 15px;
@@ -258,7 +258,7 @@ body {
 .footer-inner {
   display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 40px;
 }
-.footer-logo { height: 36px; margin-bottom: 12px; }
+.footer-logo { height: 50px; width: auto; margin-bottom: 12px; }
 .footer-brand p { color: var(--text-muted); font-size: 0.85rem; }
 .footer-links h4, .footer-contact h4 {
   font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em;
