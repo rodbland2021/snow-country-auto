@@ -118,7 +118,7 @@
 .step-label {
   font-size: 13px;
   font-weight: 600;
-  color: #9ca3b4 !important;
+  color: #c0c5d0 !important;
 }
 .progress-step.active .step-label { color: var(--text); }
 .progress-line {
