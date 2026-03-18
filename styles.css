@@ -318,5 +318,5 @@ body {
   .contact-cta { grid-template-columns: 1fr; }
   .footer-inner { grid-template-columns: 1fr 1fr; }
   .services-grid { grid-template-columns: 1fr; }
-  .theme-switcher { bottom: 12px; right: 12px; font-size: 11px; padding: 4px 8px; opacity: 0.7; }
+  .theme-switcher { bottom: 12px; right: 12px; font-size: 11px; padding: 4px 8px; }
 }
