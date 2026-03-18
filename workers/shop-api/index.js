@@ -63,6 +63,7 @@ async function handleCheckout(request, env) {
     params.append('success_url', `${env.SUCCESS_URL}?session_id={CHECKOUT_SESSION_ID}`);
     params.append('cancel_url', env.CANCEL_URL);
     params.append('payment_method_types[0]', 'card');
+    params.append('phone_number_collection[enabled]', 'true');
 
     // Store notification email in metadata so webhook can read it
     params.append('metadata[notification_email]', env.NOTIFICATION_EMAIL);
