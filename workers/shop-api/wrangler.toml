@@ -1,0 +1,9 @@
+name = "snow-country-shop-api"
+main = "index.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+STRIPE_PUBLISHABLE_KEY = "pk_test_51H23v9FFtSIGJA062KrDoGqBbOYHlU1Qa467z31f0fpS6pUgI5YQ13IgfEikNi9GRhyd5qu990zuVOrhjeHOrIgg00aKlbIEnD"
+SUCCESS_URL = "https://snow-country-auto.pages.dev/success.html"
+CANCEL_URL = "https://snow-country-auto.pages.dev/shop.html"
+NOTIFICATION_EMAIL = "rod@rodbland.com"

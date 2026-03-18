@@ -256,10 +256,44 @@
   }
 
   // --- Checkout ---
-  window.checkout = function() {
-    // Phase 2: this will call Cloudflare Worker → Stripe Checkout
-    // For now, show a placeholder message
-    alert('Checkout coming soon! For now, please call us on 02 6456 2170 or visit the workshop to complete your purchase.');
+  const SHOP_API = 'https://snow-country-shop-api.rod-1b4.workers.dev';
+
+  window.checkout = async function() {
+    const btn = document.querySelector('.cart-checkout-btn');
+    const origText = btn.textContent;
+    btn.textContent = 'Processing...';
+    btn.disabled = true;
+
+    try {
+      // Build items payload from cart
+      const items = cart.map(c => {
+        const p = products.find(x => x.id === c.id);
+        if (!p) return null;
+        return { name: p.name, brand: p.brand, sku: p.sku, price: p.price, qty: c.qty, image: p.image };
+      }).filter(Boolean);
+
+      const res = await fetch(SHOP_API + '/create-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items }),
+      });
+
+      const data = await res.json();
+
+      if (data.url) {
+        // Clear cart on successful redirect
+        localStorage.setItem('sca-cart-backup', JSON.stringify(cart));
+        window.location.href = data.url;
+      } else {
+        btn.textContent = 'Error — try again';
+        setTimeout(() => { btn.textContent = origText; btn.disabled = false; }, 3000);
+        console.error('Checkout error:', data.error);
+      }
+    } catch (err) {
+      btn.textContent = 'Error — try again';
+      setTimeout(() => { btn.textContent = origText; btn.disabled = false; }, 3000);
+      console.error('Checkout error:', err);
+    }
   };
 
   // --- Helpers ---

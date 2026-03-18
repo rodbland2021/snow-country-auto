@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmed — Snow Country Automotive</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .success-page { padding-top: 120px; padding-bottom: 80px; min-height: 80vh; display: flex; align-items: center; justify-content: center; }
+    .success-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 48px; text-align: center; max-width: 520px; }
+    .success-icon { font-size: 4rem; margin-bottom: 20px; }
+    .success-card h1 { font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem; margin-bottom: 12px; letter-spacing: 0.04em; }
+    .success-card p { color: var(--text-muted); font-size: 1rem; line-height: 1.6; margin-bottom: 16px; }
+    .success-ref { background: rgba(45,106,191,0.1); border: 1px solid rgba(45,106,191,0.2); border-radius: 8px; padding: 12px 20px; margin: 20px 0; font-family: monospace; font-size: 0.9rem; }
+    .success-actions { display: flex; gap: 12px; justify-content: center; margin-top: 24px; flex-wrap: wrap; }
+    .success-contact { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--card-border); }
+    .success-contact a { color: var(--primary); font-weight: 600; }
+    @media (max-width: 768px) { .success-page { padding-top: 80px; padding-left: 16px; padding-right: 16px; } .success-card { padding: 28px; } }
+  </style>
+</head>
+<body data-theme="rugged">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="logo"><img src="assets/logo-white.png" alt="Snow Country Automotive" class="logo-img"></a>
+      <nav class="main-nav">
+        <a href="/">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="book.html">Book Service</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-cta"><a href="tel:0264562170" class="phone-link">02 6456 2170</a></div>
+    </div>
+  </header>
+
+  <section class="success-page">
+    <div class="success-card">
+      <div class="success-icon">✅</div>
+      <h1>Order Confirmed!</h1>
+      <p>Thanks for your order! We've received your payment and will get your items ready.</p>
+      <div class="success-ref" id="sessionRef">Loading order reference...</div>
+      <p><strong>What happens next:</strong></p>
+      <p>If you chose <strong>workshop pickup</strong>, we'll have your order ready within 1 business day. We'll call or text when it's ready.</p>
+      <p>If you chose <strong>shipping</strong>, we'll dispatch within 1-2 business days and send you tracking info by email.</p>
+      <div class="success-actions">
+        <a href="shop.html" class="btn btn-primary">Continue Shopping</a>
+        <a href="/" class="btn btn-outline">Back to Home</a>
+      </div>
+      <div class="success-contact">
+        <p>Questions about your order? Call <a href="tel:0264562170">02 6456 2170</a> or email <a href="mailto:info@snowcountryautos.com.au">info@snowcountryautos.com.au</a></p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-bottom">
+      <div class="container">&copy; 2026 Snow Country Automotive Pty Ltd. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Clear cart after successful payment
+    localStorage.removeItem('sca-cart');
+
+    // Show session reference from URL
+    const params = new URLSearchParams(window.location.search);
+    const sessionId = params.get('session_id');
+    const refEl = document.getElementById('sessionRef');
+    if (sessionId) {
+      refEl.textContent = 'Order ref: ' + sessionId.substring(0, 20) + '...';
+    } else {
+      refEl.textContent = 'Order confirmed — check your email for details.';
+    }
+  </script>
+</body>
+</html>
