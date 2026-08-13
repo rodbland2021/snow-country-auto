@@ -44,10 +44,12 @@ for turning Megan's 2026-08-12 content dump into a quoted project. See
 - Contact basics (address, phone, SMS, email, Facebook)
 - Domain registrar (Webcentral, username SNO-278)
 
-**Missing entirely:**
-- Diesel Tuning page copy (doc has a title only)
-- 4WD Specialist page copy (folder empty, no doc at all)
-- Brands page copy/list (folder empty)
+**Missing, now drafted from the current site (awaiting Megan's review):**
+- Diesel Tuning page copy (doc had a title only) - see `drafts/diesel-tuning.md`
+- 4WD Specialist page copy (folder was empty) - see `drafts/4wd-specialist.md`
+- Brands page copy/list (folder was empty) - see `drafts/brands.md`
+
+**Still missing:**
 - Contact Us page detail beyond the basics above (folder empty)
 - FAQs (folder empty)
 - Photos (none attached - only a naming-convention note)
@@ -121,39 +123,52 @@ opinion before it goes into a quote:
    otherwise - don't let the old mockup's built-out Stripe shop pull scope
    back in by default.
 
-## Open questions to send Megan (bridge the gaps before quoting)
+## Branding - resolved
 
-1. Branding: exact business name for the header/logo/page titles - "Snow
-   Country Auto", "Snow Country Automotive", or "Snow Country Autos"? (This
-   is already open GitHub issue #5 on the repo.)
-2. Diesel Tuning page - who writes this copy, her/the CoC advisor, or
-   should Rod draft it from the Home page's dyno/ECU language for her to
-   approve?
-3. 4WD Specialist page - same question, currently zero content.
-4. Brands page - which brands is Snow Country Auto an authorised
-   reseller/installer for (displaying a logo implies affiliation)? The old
-   mockup already has logo assets for ARB, KORR, Ironman 4x4, Redarc,
-   Bridgestone, Kincrome, GME, Castrol, Warn, Mickey Thompson - confirm
-   which (if any) are still accurate.
-5. Contact Us - beyond address/phone/SMS/email/Facebook already supplied:
+Megan's email signature confirms it: "Snow Country Auto" (snowcountryauto.com.au,
+ABN 94 675 334 086, MVRL61982). Not "Automotive" or "Autos". GitHub issue #5
+closed with this evidence.
+
+## Diesel Tuning / 4WD Specialist / Brands - drafted, not just asked about
+
+Rather than asking Megan whether to write these or leave them blank, drafted
+all three directly from her approved Home page copy plus content already live
+on snowcountryautos.com.au (pulled via its open WP REST API - the current site
+exposes /wp-json/wp/v2/pages with full page content). See
+`drafts/diesel-tuning.md`, `drafts/4wd-specialist.md`, `drafts/brands.md`.
+
+Per Rod: all brand names already shown on the current site carry straight
+over to the new one - no gatekeeping on whether Snow Country Auto is still
+an authorised reseller for each one. Full list carried over: ARB, Ironman
+4x4, Old Man Emu, Fulcrum Suspension (Bilstein/Sachs/Monroe/King Springs),
+Roadsafe 4WD, Super Pro Bushes, Drivetech 4x4 (inc. Sumo Springs), Warn,
+Safari, Hayman Reese, Redarc, KORR Lighting, GME, Polaris Systems, Sakura
+Filtration, Companion Brands, Torqit Performance, Super Mini Booster, plus
+tyre brands Kumho, Bridgestone, Federal, Mastercraft, Continental, GT
+Radial, Toyo, Mickey Thompson. All sent inline in the questions email for
+Megan to mark up (not asked as an open question).
+
+## Open questions to send Megan (remaining gaps before quoting)
+
+1. Contact Us - beyond address/phone/SMS/email/Facebook already supplied:
    opening hours? Google Map embed? Has the Instagram account (noted as
    "TBA") been created since?
-6. FAQs - can she send 5-10 real customer questions, or should Rod draft a
+2. FAQs - can she send 5-10 real customer questions, or should Rod draft a
    starter set from the Home content for her to approve?
-7. Photos - can she organise a short shoot of the workshop, team, and a
+3. Photos - can she organise a short shoot of the workshop, team, and a
    vehicle or two, plus current logo files (vector/transparent PNG)?
-8. Podium pop-up - what's it meant to do, and is there budget for a
+4. Podium pop-up - what's it meant to do, and is there budget for a
    recurring SaaS cost, or is a free form/SMS/GBP-message approach fine?
-9. Webcentral (SNO-278) - can she share access (1Password/invite, not a
+5. Webcentral (SNO-278) - can she share access (1Password/invite, not a
    plaintext password over email) so DNS can be handled at cutover?
-10. Old site wp-admin - does she have login access, in case anything on the
-    current site (old enquiry form entries, etc.) is worth pulling before
-    replacement?
-11. Booking form and shop - still deferred, or has her thinking changed
-    since April?
-12. Budget/timeline - is the original ~$20-30/month hosting budget still
-    right, and is there a target launch date (e.g. before next snow
-    season)?
+6. Old site wp-admin - does she have login access, in case anything on the
+   current site (old enquiry form entries, etc.) is worth pulling before
+   replacement?
+7. Booking form and shop - still deferred, or has her thinking changed
+   since April?
+8. Budget/timeline - is the original ~$20-30/month hosting budget still
+   right, and is there a target launch date (e.g. before next snow
+   season)?
 
 ## Toward a scope of work / quote
 
