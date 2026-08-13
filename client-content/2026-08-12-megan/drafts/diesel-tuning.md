@@ -3,9 +3,10 @@
 Source: no copy existed in Megan's brief (title only). Drafted from her
 own approved Home page copy (dyno/ECU claim) plus the current live
 site's "Diesel Services" and "Power Upgrades & Exhausts" pages
-(diesel-services, power-upgrades-exhausts). Product/brand names carried
-over from the current site (Torqit) need confirming - still current
-under Kristian's ownership? See GitHub issue #10 (Brands page).
+(diesel-services, power-upgrades-exhausts). Brand name (Torqit) carried
+over as-is from the current site per Rod's instruction - it's already
+shown on the old site, so it's carrying straight across, no gatekeeping
+on reseller status.
 
 ---
 
@@ -24,12 +25,13 @@ generic off-the-shelf setting.
 **What we offer:**
 
 - ECU remapping and dyno-verified performance tuning
-- Performance modules for a wide range of diesel vehicles - increases
-  in power, torque and fuel efficiency by up to 35%*, installed
-  seamlessly through existing factory wiring
-- Performance exhaust systems, engineered for maximum flow and backed
-  by manufacturer warranty
-- Throttle response upgrades to eliminate lag on drive-by-wire vehicles
+- Torqit performance modules for a wide range of diesel vehicles -
+  increases in power, torque and fuel efficiency by up to 35%*,
+  installed seamlessly through existing factory wiring
+- Torqit performance exhaust systems, engineered for maximum flow and
+  backed by manufacturer warranty
+- Torqit Pedal Torq throttle response upgrades to eliminate lag on
+  drive-by-wire vehicles
 - Common rail diesel diagnostics and injector servicing
 - Broken or seized glow plug removal
 - Diesel fuel lubricant and conditioner supply
@@ -38,20 +40,12 @@ generic off-the-shelf setting.
 **Why tune with us:**
 
 - Every tune is dyno-tested, not guesswork
-- Backed by manufacturer warranty on parts fitted
+- Torqit products backed by a 30 day money back guarantee and 3 year
+  manufacturer warranty
 - Specialist diesel and 4WD workshop, not a generalist shop bolting on
   a tuning box
 - Straightforward advice on what a tune will (and won't) do for your
   vehicle and your budget
 
-*Figure carried over from the current site's tuning module copy - please
-confirm this is still the number you want quoted, or if it should be a
-different range/removed.
-
----
-
-**Note for Megan:** the current site credits a specific tuning product
-brand (Torqit) for the performance modules/exhaust/throttle items above.
-I've left the brand name out of this draft until you confirm in the
-Brands question whether that supplier relationship is still current -
-easy to add back in once confirmed.
+*Figure and warranty terms carried over from the current site's Torqit
+copy - flag if anything there needs updating.
